@@ -130,7 +130,7 @@ public class AtualizaJogador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLoginActionPerformed
 
     private void jButtonAtualizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizaActionPerformed
-        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance(5);
+        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance();
         String nome = this.jTextFieldNome.getText();
         String login = this.jTextFieldLogin.getText();
         String senha = this.jTextFieldSenha.getText();

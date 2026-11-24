@@ -1,99 +1,83 @@
 package com.mycompany.jogo;
 
+import java.util.LinkedList;
+
 public class GerenciamentoJogador {
-    private Jogador jogadores[];
-    private int tamanho;
-    private int id;
+
+    private LinkedList<Jogador> jogadores;
     public static int CONT = 500;
     private static GerenciamentoJogador instancia = null;
-    
-    private GerenciamentoJogador(int tamanho){
-        this.tamanho = tamanho;
-        this.jogadores = new Jogador[this.tamanho];
-        this.id = 0;
+
+    private GerenciamentoJogador() {
+        this.jogadores = new LinkedList<>();
     }
-    
-    public static GerenciamentoJogador getInstance(int tamanho){
-        if(instancia == null){
-            instancia = new GerenciamentoJogador(tamanho);
+
+    public static GerenciamentoJogador getInstance() {
+        if (instancia == null) {
+            instancia = new GerenciamentoJogador();
         }
+
         return instancia;
-    }       
+    }     
     
     public void adicionarJogador(String nome,
             String login, String senha){
-        if(this.id < this.tamanho){
-            this.jogadores[this.id] = new Jogador(nome,
-                login, senha);
-            ++this.id;
-        }else{ 
-            System.out.println("Sem espaco.");
-        }
-        
+            this.jogadores.add(new Jogador(nome, login, senha));
     }
     
-    public String listarJogadores(){
-        int i;
-        String conteudo = "";
-        for(i = 0; i < this.id; ++i){
-            conteudo = conteudo + 
-                    this.jogadores[i].imprimirJogador();
+
+    public String listarJogadores() {
+        StringBuilder conteudo = new StringBuilder();
+
+        for (Jogador jogador : this.jogadores) {
+            conteudo.append(jogador.imprimirJogador());
         }
-        return conteudo;
+
+        return conteudo.toString();
     }
-    
+
     public Jogador buscarJogador(int busca) {
-    	int i;
-    	for(i = 0; i < this.id; i++) {
-    		if(this.jogadores[i].getId() == busca) {
-    			return this.jogadores[i];
-    		}
-    	}
-    	return null;
-    }   
-    
-    public void removerJogador(int busca) {
-    	int i, j;
-    	boolean removeu = false;
-    	for(i = 0; i < this.id; ++i) {
-    		if(this.jogadores[i].getId() == busca) {    			
-				for(j = i; j < this.id - 1; j++) {
-					this.jogadores[j] = this.jogadores[j+1];
-				}
-				this.jogadores[i] = null;
-				--this.id;
-				removeu = true;
-    		}
-    	}
-    	if(!removeu) {
-    		System.out.println("Elemento nao encontrado");
-    	}
-    }
-    
-    public void atualizarJogador(int busca, 
-            String nome, String login, 
-            String senha, int pontuacao,
-            int vidas){
-        int i;
-        for(i = 0; i < this.id; i++){
-            if(busca == this.jogadores[i].getId()){
-                this.jogadores[i].setLogin(login);
-                this.jogadores[i].setNome(nome);
-                this.jogadores[i].setSenha(senha);
-                this.jogadores[i].setPontuacao(pontuacao);
-                this.jogadores[i].setVidas(vidas);
-                break;
+        for (Jogador jogador : this.jogadores) {
+            if (jogador.getId() == busca) {
+                return jogador;
             }
         }
+
+        return null;
     }
-    
-    public boolean  validarLogin(String login){
-        int i;
-        for(i = 0; i < this.id; i++){
-            if(this.jogadores[i].getLogin().equals(login)){
+
+    public void removerJogador(int busca) {
+        Jogador jogador = buscarJogador(busca);
+
+        if (jogador != null) {
+            this.jogadores.remove(jogador);
+        } else {
+            System.out.println("Elemento nao encontrado");
+        }
+    }
+
+    public void atualizarJogador(int busca,
+            String nome, String login, String senha,
+            int pontuacao, int vidas) {
+
+        Jogador jogador = buscarJogador(busca);
+
+        if (jogador != null) {
+            jogador.setNome(nome);
+            jogador.setLogin(login);
+            jogador.setSenha(senha);
+            jogador.setPontuacao(pontuacao);
+            jogador.setVidas(vidas);
+        }
+    }
+
+    public boolean validarLogin(String login) {
+        for (Jogador jogador : this.jogadores) {
+            if (jogador.getLogin().equals(login)) {
                 return true;
             }
         }
+
         return false;
     }
 }

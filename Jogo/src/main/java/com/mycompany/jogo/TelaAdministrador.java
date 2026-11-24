@@ -113,7 +113,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-       GerenciamentoJogador genJog = GerenciamentoJogador.getInstance(5);
+       GerenciamentoJogador genJog = GerenciamentoJogador.getInstance();
        JOptionPane.showMessageDialog(rootPane, genJog.listarJogadores());
     }//GEN-LAST:event_jButtonListarActionPerformed
 
@@ -121,7 +121,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
         int busca = Integer.parseInt(JOptionPane.showInputDialog
         ("Digite o codigo do jogador:"));
         
-        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance(5);
+        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance();
         Jogador jogador = genJog.buscarJogador(busca);
         if(jogador == null){
             JOptionPane.showMessageDialog(rootPane, "Jogador nao encontrado!");
@@ -135,7 +135,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         int busca = Integer.parseInt(JOptionPane.showInputDialog
         ("Digite o codigo do jogador:"));
-        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance(5);
+        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance();
         Jogador jogador = genJog.buscarJogador(busca);
         if(jogador == null){JOptionPane.showMessageDialog(rootPane, "Jogador nao encontrado");
         }else{
@@ -144,7 +144,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
 }
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         int busca = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do jogador:"));
-        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance(5);
+        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance();
         genJog.removerJogador(busca);
         
     }//GEN-LAST:event_jButtonRemoverActionPerformed

@@ -128,7 +128,7 @@ public class AdicionaJogador extends javax.swing.JFrame {
         String nome = jTextFieldNome.getText();
         String login = jTextFieldLogin.getText();
         String senha = jTextFieldSenha.getText();
-        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance(5);
+        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance();
         if (genJog.validarLogin(login)){
             JOptionPane.showMessageDialog(rootPane, "Login utilizado \nTente outro login!");
         }else {
