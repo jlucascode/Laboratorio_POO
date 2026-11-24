@@ -54,8 +54,10 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jButtonRemover.addActionListener(this::jButtonRemoverActionPerformed);
 
         jButtonVerRanking.setText("Ver Ranking");
+        jButtonVerRanking.addActionListener(this::jButtonVerRankingActionPerformed);
 
         jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(this::jButtonSairActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,6 +150,17 @@ public class TelaAdministrador extends javax.swing.JFrame {
         genJog.removerJogador(busca);
         
     }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        new TelaInicial().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jButtonVerRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerRankingActionPerformed
+        GerenciamentoJogador genJog = GerenciamentoJogador.getInstance();
+        JOptionPane.showMessageDialog(this, genJog.listarRanking(),
+                "Ranking de jogadores", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButtonVerRankingActionPerformed
 
     /**
      * @param args the command line arguments

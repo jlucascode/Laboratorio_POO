@@ -1,5 +1,6 @@
 package com.mycompany.jogo;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class GerenciamentoJogador {
@@ -33,6 +34,24 @@ public class GerenciamentoJogador {
             conteudo.append(jogador.imprimirJogador());
         }
 
+        return conteudo.toString();
+    }
+
+    public String listarRanking() {
+        if (jogadores.isEmpty()) {
+            return "Nenhum jogador cadastrado.";
+        }
+
+        LinkedList<Jogador> ranking = new LinkedList<>(jogadores);
+        ranking.sort(Comparator.comparingInt(Jogador::getPontuacao).reversed());
+
+        StringBuilder conteudo = new StringBuilder();
+        int posicao = 1;
+        for (Jogador jogador : ranking) {
+            conteudo.append(posicao++).append(". ")
+                    .append(jogador.getNome()).append(" — ")
+                    .append(jogador.getPontuacao()).append(" ponto(s)\n");
+        }
         return conteudo.toString();
     }
 
